@@ -6,7 +6,7 @@ fn read_single_line() -> String {
 }
 
 // should print "hello ${name}"
-fn hello(name: String) {
+fn hello(name: String) -> String {
     unimplemented!()
 }
 
@@ -15,7 +15,33 @@ fn main() {
 
     let name = read_single_line();
 
-    hello(name);
-    // Implement goodbye and then uncomment this. What happens?
-    // goodbye(name);
+    let greeting = hello(name);
+    println!("{greeting}");
+
+    // Implement "goodbye" and then uncomment this. What happens?
+    // let not_a_greeting = goodbye(name);
+    // println!("{not_a_greeting}");
+}
+
+#[cfg(test)]
+mod test {
+    use crate::hello;
+
+    #[test]
+    fn hello_test() {
+        let input = "ferris";
+
+        let output = hello(input.to_string());
+
+        assert_eq!(output, "hello ferris");
+    }
+
+    // #[test]
+    // fn goodbye_test() {
+    //     let input = "ferris";
+
+    //     let output = goodbye(input.to_string());
+
+    //     assert_eq!(output, "goodbye ferris");
+    // }
 }
